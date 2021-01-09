@@ -1,0 +1,98 @@
+----ERROS DA IMPORTAÇÃO GAMES_DETAILS_RESUMIDA
+
+25067 row(s) affected, 1024 warning(s): 
+
+1366 Incorrect integer value: 'GAME_ID' for column 'GAME_ID' at row 1 
+
+1366 Incorrect integer value: 'TEAM_ID' for column 'TEAM_ID' at row 1 
+
+1366 Incorrect integer value: 'PLAYER_ID' for column 'PLAYER_ID' at row 1 
+
+1366 Incorrect integer value: 'FGM' for column 'FGM' at row 1 
+
+1265 Data truncated for column 'FG_PCT' at row 1 
+
+1366 Incorrect integer value: 'FG3M' for column 'FG3M' at row 1 
+
+1265 Data truncated for column 'FG3_PCT' at row 1 
+
+1366 Incorrect integer value: 'FTM' for column 'FTM' at row 1 
+
+1265 Data truncated for column 'FT_PCT' at row 1 
+
+1366 Incorrect integer value: 'OREB' for column 'OREB' at row 1 
+
+1366 Incorrect integer value: 'REB' for column 'REB' at row 1 
+
+1366 Incorrect integer value: 'AST' for column 'AST' at row 1 
+
+1366 Incorrect integer value: 'BLK' for column 'BLK' at row 1 
+
+1366 Incorrect integer value: 'PF' for column 'PF' at row 1 
+
+1366 Incorrect integer value: 'PTS' for column 'PTS' at row 1 
+
+1262 Row 1 was truncated; it contained more data than there were input columns 
+
+1262 Row 2 was truncated; it contained more data than there were input columns 
+
+1262 Row 3 was truncated; it contained more data than there were input columns 
+
+1262 Row 4 was truncated; it contained more data than there were input columns 
+
+1262 Row 5 was truncated; it contained more data than there were input columns 
+
+1262 Row 6 was truncated; it contained more data than there were input columns 
+
+1262 Row 7 was truncated; it contained more data than there were input columns 
+
+1262 Row 8 was truncated; it contained more data than there were input columns 
+
+1262 Row 9 was truncated; it contained more data than there were input columns 
+
+1262 Row 10 was truncated; it contained more data than there were input columns 
+
+1262 Row 11 was truncated; it contained more data than there were input columns
+ 
+1262 Row 12 was truncated; it contained more data than there were input columns 
+
+1262 Row 13 was truncated; it contained more data than there were input columns 
+
+1262 Row 14 was truncated; it contained more data than there were input columns 
+
+----ERROS DA IMPORTAÇÃO GAMES_RESUMIDA
+965 row(s) affected, 1024 warning(s): 
+
+1265 Data truncated for column 'GAME_DATE_EST' at row 1 
+1265 Data truncated for column 'GAME_DATE_EST' at row 2 
+1265 Data truncated for column 'GAME_DATE_EST' at row 3 
+1265 Data truncated for column 'GAME_DATE_EST' at row 4 
+1265 Data truncated for column 'GAME_DATE_EST' at row 5 
+1265 Data truncated for column 'GAME_DATE_EST' at row 6 
+1265 Data truncated for column 'GAME_DATE_EST' at row 7 
+1265 Data truncated for column 'GAME_DATE_EST' at row 8 
+1265 Data truncated for column 'GAME_DATE_EST' at row 9 
+1265 Data truncated for column 'GAME_DATE_EST' at row 10 
+1265 Data truncated for column 'GAME_DATE_EST' at row 11 
+1265 Data truncated for column 'GAME_DATE_EST' at row 12 
+1265 Data truncated for column 'GAME_DATE_EST' at row 13 
+1265 Data truncated for column 'GAME_DATE_EST' at row 14 
+1265 Data truncated for column 'GAME_DATE_EST' at row 15 
+1265 Data truncated for column 'GAME_DATE_EST' at row 16 
+1265 Data truncated for column 'GAME_DATE_EST' at row 17 
+1265 Data truncated for column 'GAME_DATE_EST' at row 18 
+1265 Data truncated for column 'GAME_DATE_EST' at row 19 
+1265 Data truncated for column 'GAME_DATE_EST' at row 20 
+1265 Data truncated for column 'GAME_DATE_EST' at row 21 
+
+
+------erros no TEAMS.csv
+
+30 row(s) affected, 4 warning(s): 
+
+1366 Incorrect integer value: '' for column 'ARENACAPACITY' at row 3 
+1366 Incorrect integer value: '' for column 'ARENACAPACITY' at row 13 
+1366 Incorrect integer value: '' for column 'ARENACAPACITY' at row 17 
+1366 Incorrect integer value: '' for column 'ARENACAPACITY' at row 18 
+
+Records: 30  Deleted: 0  Skipped: 0  Warnings: 4

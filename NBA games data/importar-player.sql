@@ -1,0 +1,18 @@
+SHOW DATABASES;
+
+USE NBA_GRUPO6;
+
+CREATE TABLE player
+(PLAYER_NAME TEXT,	TEAM_ID VARCHAR(20),	PLAYER_ID VARCHAR(20),	SEASON VARCHAR(20));
+
+SHOW TABLES;
+SELECT * FROM player;
+
+-- 'C:/Users/VINÍCIUS/Desktop/Projeto-Modulo2/Resilia_Projeto_MOD2/NBA games data/(ARQUIVO).csv' 
+LOAD DATA LOCAL INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/players.csv'
+INTO TABLE player
+FIELDS TERMINATED BY ','
+IGNORE 1 LINES; 
+
+SELECT * FROM player;
+
