@@ -1,0 +1,15 @@
+Quais jogadores marcaram mais vezes triplos duplos? *(10 pontos ou +, 10 assistências ou + e 10 rebotes ou +) 
+
+Quais equipes foram campeãs mais vezes?
+
+Quais equipes nunca chegaram aos playoffs?
+
+Quais equipes alcançaram 4 vitórias seguidas nos playoffs?
+
+Quais equipes tiveram maior índice de rebotes? 
+
+Quais equipes tiveram o maior índice de passes? 
+
+Quais equipes tiveram o maior índice de pontos fora de casa? 
+
+Quais equipes conquistaram mais vitórias na temporada? 
