@@ -17,4 +17,8 @@ INTO TABLE games
 FIELDS TERMINATED BY ','
 IGNORE 1 LINES; 
 
+
+
+
+
 SELECT * FROM games;
