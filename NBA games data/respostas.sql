@@ -15,21 +15,7 @@ INNER JOIN TEAMS T on T.TEAM_ID = TABELA.HOME_TEAM_ID
 ORDER BY VITORIAS_EM_CASA DESC
 LIMIT 5;
 
--- 2) Quais equipes foram campeãs mais vezes em 2018?
-SELECT HOME_TEAM_ID,
- sum(HOME_TEAM_WINS) AS VITORIAS FROM GAMES 
-WHERE SEASON = 2018 
-GROUP BY HOME_TEAM_ID 
-ORDER BY VITORIAS DESC;
-
--- 3) Quais equipes foram campeãs mais vezes em 2017?
-SELECT HOME_TEAM_ID, 
-sum(HOME_TEAM_WINS) AS VITORIAS FROM GAMES 
-WHERE SEASON = 2017 
-GROUP BY HOME_TEAM_ID 
-ORDER BY VITORIAS DESC;
-
--- 4) Quais equipes tiveram maior número de rebotes em 2019? 
+-- 2) Quais equipes tiveram maior número de rebotes em 2019? 
 SELECT t.nickname AS NOME_DO_TIME,
  tabela.total_rebotes AS TOTAL_DE_REBOTES 
  FROM (SELECT  team_id, sum(oreb + reb) AS total_rebotes FROM games_details_resumida
@@ -38,7 +24,7 @@ SELECT t.nickname AS NOME_DO_TIME,
 ORDER BY tabela.total_rebotes DESC;
 
 
--- 5) Quais equipes tiveram o maior número de pontos em um jogo?
+-- 3) Quais equipes tiveram o maior número de pontos em um jogo?
 SELECT T.NICKNAME AS EQUIPE,
 	   TIMES_PONTUADORES.PONTOS_FEITOS 
 FROM	
@@ -54,36 +40,39 @@ FROM
 	GROUP BY G.TEAM_ID) TIMES_PONTUADORES
 INNER JOIN TEAMS T ON T.TEAM_ID = TIMES_PONTUADORES.TEAM_ID;
 
-
--- 6) Quais jogadores marcaram mais vezes triplos duplos? (10 pontos ou +, 10 assistências ou + e 10 rebotes ou +) 
-    
--- 7) Quais equipes tiveram o maior índice de pontos fora de casa em 2019? 
-
--- 8) Jogador com maior número de assistências?
-SELECT DISTINCT P.PLAYER_NAME AS JOGADOR , TAB_ASSIST.NUMERO_ASSISTENCIAS
+-- 4) Jogador com maior número de assistências?
+SELECT DISTINCT P.PLAYER_NAME AS JOGADOR, 
+TAB_ASSIST.NUMERO_ASSISTENCIAS
 FROM
-	(SELECT PLAYER_ID, MAX(AST) AS NUMERO_ASSISTENCIAS FROM GAMES_DETAILS_RESUMIDA
+	(SELECT PLAYER_ID, 
+    MAX(AST) AS NUMERO_ASSISTENCIAS 
+    FROM GAMES_DETAILS_RESUMIDA
 	GROUP BY PLAYER_ID
 	ORDER BY MAX(AST) DESC
     LIMIT 5) AS TAB_ASSIST
 INNER JOIN PLAYER P ON P.PLAYER_ID = TAB_ASSIST.PLAYER_ID
 ORDER BY TAB_ASSIST.NUMERO_ASSISTENCIAS DESC;
 
-
-SELECT PLAYER_ID, MAX(AST) AS NUMERO_ASSISTENCIAS FROM GAMES_DETAILS_RESUMIDA
+-- 5) Jogador com maior número de cestas de 3 pontos?
+SELECT DISTINCT P.PLAYER_NAME AS JOGADOR, 
+TAB_ASSIST.CESTAS_3PTS
+FROM
+	(SELECT PLAYER_ID, 
+    MAX(FG3M) AS CESTAS_3PTS
+    FROM GAMES_DETAILS_RESUMIDA
 	GROUP BY PLAYER_ID
-	ORDER BY MAX(AST) DESC
-    LIMIT 5;
+	ORDER BY MAX(FG3M) DESC
+    LIMIT 10) AS TAB_ASSIST
+INNER JOIN PLAYER P ON P.PLAYER_ID = TAB_ASSIST.PLAYER_ID
+ORDER BY TAB_ASSIST.CESTAS_3PTS DESC;
 
 
-SELECT game_id, sum(pf) FROM GAMES_DETAILS_RESUMIDA
-group by game_id
-order by sum(pf) desc;
 
+---------------------------------------------
 
-select game_id,team_id,sum(FG3M) from games_details_resumida
-group by game_id
-ORDER BY SUM(FG3M) DESC;
+SELECT * FROM GAMES_DETAILS_RESUMIDA
+WHERE PLAYER_ID = "203897";
 
-select game_id , sum(fg3m) from games_details_resumida
-where game_id = "21900482";
+SELECT * FROM GAMES; 
+select * from teams;
+select * from games_details_resumida;
