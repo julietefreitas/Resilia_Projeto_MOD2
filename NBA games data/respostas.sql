@@ -1,30 +1,20 @@
-SELECT * FROM GAMES; 
-select * from teams;
-select * from games_details_resumida;
+-- 1) Jogadores com maior índice de pontos no jogo com maior pontuação da temporada.
 
--- 1) Quais equipes conquistaram mais vitórias dentro de casa em 2019? 
-SELECT T.NICKNAME,
- TABELA.VITORIAS_CASA AS VITORIAS_EM_CASA,
- TABELA.SEASON AS SEASON 
- FROM  
-	(SELECT SEASON, HOME_TEAM_ID, SUM(HOME_TEAM_WINS) AS VITORIAS_CASA FROM GAMES 
-	WHERE SEASON = 2019
-	GROUP BY HOME_TEAM_ID 
-	ORDER BY VITORIAS_CASA DESC) TABELA
-INNER JOIN TEAMS T on T.TEAM_ID = TABELA.HOME_TEAM_ID    
-ORDER BY VITORIAS_EM_CASA DESC
-LIMIT 5;
+SELECT G.PTS AS PONTOS, G.PLAYER_NAME AS JOGADOR, T.NICKNAME
+	FROM
+	(SELECT GAME_ID,
+	MAX(PTS_HOME + PTS_AWAY) as PTOTAIS
+	from GAMES
+	WHERE SEASON = "2019"
+    GROUP BY GAME_ID
+	ORDER BY PTOTAIS DESC
+    LIMIT 1) AS PT_JOGO
+INNER JOIN GAMES_DETAILS_RESUMIDA G ON G.GAME_ID = PT_JOGO.GAME_ID
+INNER JOIN TEAMS T ON T.TEAM_ID = G.TEAM_ID
+ORDER BY PONTOS DESC
+LIMIT 20;
 
--- 2) Quais equipes tiveram maior número de rebotes em 2019? 
-SELECT t.nickname AS NOME_DO_TIME,
- tabela.total_rebotes AS TOTAL_DE_REBOTES 
- FROM (SELECT  team_id, sum(oreb + reb) AS total_rebotes FROM games_details_resumida
-	GROUP BY team_id) AS tabela
-	INNER JOIN teams t ON t.team_id = tabela.team_id
-ORDER BY tabela.total_rebotes DESC;
-
-
--- 3) Quais equipes tiveram o maior número de pontos em um jogo?
+-- 2) Quais equipes tiveram o maior número de pontos em um jogo?
 SELECT T.NICKNAME AS EQUIPE,
 	   TIMES_PONTUADORES.PONTOS_FEITOS 
 FROM	
@@ -40,7 +30,31 @@ FROM
 	GROUP BY G.TEAM_ID) TIMES_PONTUADORES
 INNER JOIN TEAMS T ON T.TEAM_ID = TIMES_PONTUADORES.TEAM_ID;
 
--- 4) Jogador com maior número de assistências?
+
+-- 3) Quais equipes conquistaram mais vitórias dentro de casa em 2019? 
+SELECT T.NICKNAME,
+ TABELA.VITORIAS_CASA AS VITORIAS_EM_CASA,
+ TABELA.SEASON AS SEASON 
+ FROM  
+	(SELECT SEASON, HOME_TEAM_ID, SUM(HOME_TEAM_WINS) AS VITORIAS_CASA FROM GAMES 
+	WHERE SEASON = 2019
+	GROUP BY HOME_TEAM_ID 
+	ORDER BY VITORIAS_CASA DESC) TABELA
+INNER JOIN TEAMS T on T.TEAM_ID = TABELA.HOME_TEAM_ID    
+ORDER BY VITORIAS_EM_CASA DESC
+LIMIT 5;
+
+-- 4) Quais equipes tiveram maior número de rebotes em 2019? 
+SELECT t.nickname AS NOME_DO_TIME,
+ tabela.total_rebotes AS TOTAL_DE_REBOTES 
+ FROM (SELECT  team_id, sum(oreb + reb) AS total_rebotes FROM games_details_resumida
+	GROUP BY team_id) AS tabela
+	INNER JOIN teams t ON t.team_id = tabela.team_id
+ORDER BY tabela.total_rebotes DESC;
+
+
+
+-- 5) Jogadores com maior número de assistências?
 SELECT DISTINCT P.PLAYER_NAME AS JOGADOR, 
 TAB_ASSIST.NUMERO_ASSISTENCIAS
 FROM
@@ -53,7 +67,13 @@ FROM
 INNER JOIN PLAYER P ON P.PLAYER_ID = TAB_ASSIST.PLAYER_ID
 ORDER BY TAB_ASSIST.NUMERO_ASSISTENCIAS DESC;
 
--- 5) Jogador com maior número de cestas de 3 pontos?
+
+
+
+
+
+
+-- NAO COLOCAMOS) Jogador com maior número de cestas de 3 pontos?
 SELECT DISTINCT P.PLAYER_NAME AS JOGADOR, 
 TAB_ASSIST.CESTAS_3PTS
 FROM
@@ -66,13 +86,19 @@ FROM
 INNER JOIN PLAYER P ON P.PLAYER_ID = TAB_ASSIST.PLAYER_ID
 ORDER BY TAB_ASSIST.CESTAS_3PTS DESC;
 
+select player_id, max(pts) from games_details_resumida
+group by player_id
+order by max(pts) desc;
+
+select game_id , max(abs(pts_home - pts_away)) as diferencas from games
+where season = "2019"
+group by game_id
+order by  diferencas DESC;
 
 
----------------------------------------------
 
-SELECT * FROM GAMES_DETAILS_RESUMIDA
-WHERE PLAYER_ID = "203897";
 
-SELECT * FROM GAMES; 
-select * from teams;
-select * from games_details_resumida;
+select * from games 
+where game_id = "21900182";
+
+SELECT * FROM GAMES;
