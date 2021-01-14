@@ -73,32 +73,3 @@ ORDER BY TAB_ASSIST.NUMERO_ASSISTENCIAS DESC;
 
 
 
--- NAO COLOCAMOS) Jogador com maior número de cestas de 3 pontos?
-SELECT DISTINCT P.PLAYER_NAME AS JOGADOR, 
-TAB_ASSIST.CESTAS_3PTS
-FROM
-	(SELECT PLAYER_ID, 
-    MAX(FG3M) AS CESTAS_3PTS
-    FROM GAMES_DETAILS_RESUMIDA
-	GROUP BY PLAYER_ID
-	ORDER BY MAX(FG3M) DESC
-    LIMIT 10) AS TAB_ASSIST
-INNER JOIN PLAYER P ON P.PLAYER_ID = TAB_ASSIST.PLAYER_ID
-ORDER BY TAB_ASSIST.CESTAS_3PTS DESC;
-
-select player_id, max(pts) from games_details_resumida
-group by player_id
-order by max(pts) desc;
-
-select game_id , max(abs(pts_home - pts_away)) as diferencas from games
-where season = "2019"
-group by game_id
-order by  diferencas DESC;
-
-
-
-
-select * from games 
-where game_id = "21900182";
-
-SELECT * FROM GAMES;
